@@ -1,37 +1,56 @@
+"use client";
+
 import {
   NavigationMenu,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import clsx from "clsx";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+const navigationMenuItems = [
+  {
+    link: "/calculate",
+    description: "Calculate",
+  },
+  {
+    link: "/",
+    description: "Home",
+  },
+  {
+    link: "/calender",
+    description: "Calender",
+  },
+];
 
 const FooterMenu = () => {
+  const requestPathname = usePathname();
+  console.log(requestPathname);
+
   return (
-    <NavigationMenu>
-      <NavigationMenuList>
-        <NavigationMenuItem>
-          <Link href="/calculate" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Calculate
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link href="/" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Home
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link href="/calender" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Calender
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
+    <NavigationMenu className="absolute bottom-0">
+      <NavigationMenuList className="w-screen">
+        {/* <div className=""> */}
+        {navigationMenuItems.map((item, index) => (
+          <NavigationMenuItem
+            key={index}
+            className="flex justify-center w-full"
+          >
+            <Link
+              href={item.link}
+              className={clsx(
+                "w-full",
+                navigationMenuTriggerStyle(),
+                item.link === requestPathname && "bg-green-50"
+              )}
+            >
+              {item.description}
+            </Link>
+          </NavigationMenuItem>
+        ))}
+        {/* </div> */}
       </NavigationMenuList>
     </NavigationMenu>
   );
