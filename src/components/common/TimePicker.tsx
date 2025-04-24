@@ -11,7 +11,7 @@ export const TimePicker = ({ label, id }: Props) => {
   return (
     <div className="grid w-full max-w-sm items-center gap-1.5">
       <Label htmlFor={id}>{label}</Label>
-      <div className="relative">
+      <div className="relative rounded-md overflow-hidden">
         <Input
           type="time"
           id={id}
