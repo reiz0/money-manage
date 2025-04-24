@@ -1,7 +1,9 @@
-import React from 'react'
+import { WorkTimeCard } from "@/components/common/WorkTimeCard";
 
 export default function CalculatePage() {
   return (
-    <div>CalculatePage</div>
-  )
+    <div>
+      <WorkTimeCard />
+    </div>
+  );
 }
