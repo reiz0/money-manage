@@ -7,9 +7,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Plus, Trash2 } from "lucide-react";
-import { DatePicker } from "./DatePicker";
-import { TimePicker } from "./TimePicker";
-import { Input } from "../ui/input";
+import { DatePicker } from "../../../components/common/DatePicker";
+import { TimePicker } from "../../../components/common/TimePicker";
+import { Input } from "../../../components/ui/input";
 
 export const WorkTimeCard = () => {
   return (
@@ -30,15 +30,26 @@ export const WorkTimeCard = () => {
           <TimePicker label="End Time" id="endTime" />
         </div>
         <Card>
-          <CardHeader><CardTitle>Total Break Time</CardTitle></CardHeader>
+          <CardHeader>
+            <CardTitle>Total Break Time</CardTitle>
+          </CardHeader>
           <CardContent>
-            <Input className=""/>
+            <div className="relative">
+              <Input type="number" min="0" />
+              <div className="absolute right-0 top-0 bottom-0 w-16 flex items-center justify-center bg-emerald-800/50 border-l border-emerald-700/50 text-emerald-300 text-sm">
+                HOURS
+              </div>
+            </div>
           </CardContent>
         </Card>
       </CardContent>
       <CardFooter>
-        <Button variant="outline" className="w-full border-emerald-700/50 bg-emerald-800/40 text-emerald-500 active:bg-emerald-700 active:text-emerald-50 hover:border-emerald-700/50 hover:bg-emerald-800/40 hover:text-emerald-300">
-          <Plus />Add Break Detail
+        <Button
+          variant="outline"
+          className="w-full border-emerald-700/50 bg-emerald-800/40 text-emerald-500 active:bg-emerald-700 active:text-emerald-50 hover:border-emerald-700/50 hover:bg-emerald-800/40 hover:text-emerald-300"
+        >
+          <Plus />
+          Add Break Detail
         </Button>
       </CardFooter>
     </Card>
