@@ -7,16 +7,34 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Plus, Trash2 } from "lucide-react";
+import { useContext } from "react";
 import { DatePicker } from "../../../components/common/DatePicker";
 import { TimePicker } from "../../../components/common/TimePicker";
 import { Input } from "../../../components/ui/input";
+import { WorkTimeCardNumContext } from "../page";
 
-export const WorkTimeCard = () => {
+type Props = {
+  index: number;
+};
+
+export const WorkTimeCard = ({ index }: Props) => {
+  const { WorkTimeCardNum, setWorkTimeCardNum } = useContext(
+    WorkTimeCardNumContext
+  );
+
+  const editWorkTimeCardNum = () => {
+    const newWorkTimeCardNum = [...WorkTimeCardNum];
+    newWorkTimeCardNum.splice(index, 1);
+
+    setWorkTimeCardNum(newWorkTimeCardNum);
+  };
+
   return (
     <Card className="m-3 overflow-hidden">
       <CardHeader className="flex flex-row items-center justify-between bg-emerald-700/30 border-b border-emerald-800/30 pb-2">
         <DatePicker />
         <Button
+          onClick={() => editWorkTimeCardNum()}
           variant="ghost"
           size="icon"
           className="h-8 w-8 hover:text-red-400 hover:bg-red-950/20"
